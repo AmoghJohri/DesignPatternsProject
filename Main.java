@@ -36,11 +36,6 @@ public class Main
             {
                 break;
             }
-            else
-            {   
-                // default
-                item = ItemFactory.getItem("MCQ");
-            }
             System.out.println("Press 4 to review Item");
             System.out.println("Press 5 to delete Item");
             System.out.println("Press 6 to save Item");

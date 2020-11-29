@@ -40,6 +40,13 @@ public class ItemFactory
         {
             new ItemFactory(type);
         }
-        return createType.get(type).makeItem();
+        if(createType.containsKey(type))
+        {
+            return createType.get(type).makeItem();
+        }
+        else
+        {
+            return getItem("MCQ");
+        }
     }
 }
