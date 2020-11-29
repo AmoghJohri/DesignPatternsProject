@@ -1,5 +1,7 @@
 package Item.Comprehension;
-import Item.MCQ2.*;
+import Item.MCQ2.MCQ2Question;
+import Item.MCQ2.MCQ2Answer;
+import Item.Item;
 public class AddMCQ2 extends Decorator
 {
     private MCQ2Question question;
@@ -10,6 +12,13 @@ public class AddMCQ2 extends Decorator
         super(tempComprehension);
         this.question = question;
         this.answer = answer;
+    }
+
+    public AddMCQ2(Comprehension tempComprehension, Item item)
+    {
+        super(tempComprehension);
+        this.question = (MCQ2Question)item.getQuestion();
+        this.answer = (MCQ2Answer)item.getAnswer();
     }
 
     public String getQuestionDescription()

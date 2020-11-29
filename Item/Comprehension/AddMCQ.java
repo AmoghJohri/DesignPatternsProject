@@ -1,5 +1,7 @@
 package Item.Comprehension;
-import Item.MCQ.*;
+import Item.MCQ.MCQQuestion;
+import Item.MCQ.MCQAnswer;
+import Item.Item;
 public class AddMCQ extends Decorator
 {
     private MCQQuestion question;
@@ -10,6 +12,13 @@ public class AddMCQ extends Decorator
         super(tempComprehension);
         this.question = question;
         this.answer = answer;
+    }
+
+    public AddMCQ(Comprehension tempComprehension, Item item)
+    {
+        super(tempComprehension);
+        this.question = (MCQQuestion)item.getQuestion();
+        this.answer = (MCQAnswer)item.getAnswer();
     }
 
     public String getQuestionDescription()

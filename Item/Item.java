@@ -44,4 +44,9 @@ public abstract class Item {
     {
         return this.difficulty;
     }
+
+    public String displayItem()
+    {
+        return this.question.displayQuestion() + "\n" + this.answer.displayAnswer();
+    }
 }

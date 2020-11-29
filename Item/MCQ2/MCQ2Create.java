@@ -4,8 +4,7 @@ import java.util.Scanner;
 import java.util.ArrayList;
 public class MCQ2Create 
 {
-    public MCQ2Create(){}
-    public Item makeItem()
+    public static Item makeItem()
     {
         Scanner scan = new Scanner(System.in);
         String question = null;
@@ -17,9 +16,9 @@ public class MCQ2Create
             System.out.println("Press 1 to enter the Question");
             System.out.println("Press 2 to enter the Options");
             System.out.println("Press 3 to enter the Answers");
-            System.out.println("Press 5 to enter the Difficulty");
+            System.out.println("Press 4 to enter the Difficulty");
             System.out.println("Press 5 to get the Item");
-            Integer input = scan.nextInt();
+            Integer input = Integer.parseInt(scan.nextLine());
             if(input == 1)
             {
                 System.out.println("Enter the question:");
@@ -28,7 +27,7 @@ public class MCQ2Create
             else if(input == 2)
             {
                 System.out.println("Enter the number of Options:");
-                Integer n = scan.nextInt();
+                Integer n = Integer.parseInt(scan.nextLine());
                 options = new ArrayList<String>();
                 System.out.println("Enter the options one after the other.");
                 for(int i = 0; i < n; i++)
@@ -39,22 +38,21 @@ public class MCQ2Create
             else if(input == 3)
             {
                 System.out.println("Enter the number of Answers:");
-                Integer n = scan.nextInt();
+                Integer n = Integer.parseInt(scan.nextLine());
                 answers = new ArrayList<Integer>();
                 System.out.println("Enter the answer indices one after the other.");
                 for(int i = 0; i < n; i++)
                 {
-                    answers.add(scan.nextInt());
+                    answers.add(Integer.parseInt(scan.nextLine())); 
                 }
             }
             else if(input == 4)
             {
                 System.out.println("Enter the Difficulty:");
-                difficulty = scan.nextInt();
+                difficulty = Integer.parseInt(scan.nextLine());
             }
             else if(input == 5)
             {
-                scan.close();
                 return new MCQ2Item(new MCQ2Question(question, options), new MCQ2Answer(answers), difficulty);
             }
         }

@@ -1,19 +1,80 @@
-import Item.Comprehension.*;
-import Item.MCQ.*;
-import Item.MCQ2.*;
+import Item.ItemFactory;
+import Item.Item;
+import java.util.Scanner;
+import Database.QuestionDatabaseConnectionPool;
 import java.util.ArrayList;
-import java.util.Arrays;
 public class Main
 {
     public static void main(String[] args)
     {
-        Comprehension question = new Paragraph("This is the paragraph for Question 1\n");
-        MCQQuestion mcq_question_1 = new MCQQuestion("MCQ Question", new ArrayList<String>(Arrays.asList("Option 1", "Option 2", "Option 3", "Option 4")));
-        MCQAnswer mcq_answer_1 = new MCQAnswer(2);
-        MCQ2Question mcq_question_2 = new MCQ2Question("MCQ2 Question", new ArrayList<String>(Arrays.asList("Option 1", "Option 2", "Option 3", "Option 4")));
-        MCQ2Answer mcq_answer_2 = new MCQ2Answer(new ArrayList<Integer>(Arrays.asList(1, 2, 3)));
-        question = new AddMCQ2(new AddMCQ(question, mcq_question_1, mcq_answer_1), mcq_question_2, mcq_answer_2);
-        System.out.println(question.getQuestionDescription());
-        System.out.println(question.getAnswerDescription());
+        Scanner scan = new Scanner(System.in);
+        ArrayList<Item> savedItems = new ArrayList<Item>();
+        QuestionDatabaseConnectionPool pool = QuestionDatabaseConnectionPool.getConnectionPool();
+        Integer choice;
+        System.out.println("Welcome to the Item Authoring Module!");
+        while(true)
+        {
+            Item item = null;
+            System.out.println("Press 1 to create an MCQ Question");
+            System.out.println("Press 2 to create an MCQ2 Question");
+            System.out.println("Press 3 to create a Comprehension Question");
+            System.out.println("Press 9 to Exit");
+            choice = Integer.parseInt(scan.nextLine());
+            if(choice == 1)
+            {
+                item = ItemFactory.makeItem("MCQ");
+            }
+            else if(choice == 2)
+            {
+                item = ItemFactory.makeItem("MCQ2");
+            }
+            else if(choice == 3)
+            {
+                item = ItemFactory.makeItem("Comprehension");
+            }
+            else if(choice == 9)
+            {
+                break;
+            }
+            else
+            {   
+                // default
+                item = ItemFactory.makeItem("MCQ");
+            }
+            System.out.println("Press 4 to review Item");
+            System.out.println("Press 5 to delete Item");
+            System.out.println("Press 6 to save Item");
+            System.out.println("Press 9 to Exit");
+            choice = Integer.parseInt(scan.nextLine());
+            if(choice == 4)
+            {
+                System.out.println("\n" + item.displayItem());
+            }
+            else if(choice == 5)
+            {
+                item = null;
+            }
+            else if(choice == 6)
+            {
+                Integer connectionNumber = pool.getConnection();
+                while(connectionNumber == -1)
+                {
+                    connectionNumber = pool.getConnection();
+                }
+                System.out.println("Saving Item using Connection: " + connectionNumber.toString());
+                savedItems.add(item);
+                pool.releaseConnection(connectionNumber);
+            }
+            else if(choice == 9)
+            {
+                break;
+            }
+        }
+        System.out.println("These are all the questions that you have submitted!");
+        for(Item item : savedItems)
+        {
+            System.out.println("\n" + item.displayItem());
+        }
+        System.out.println("Goodbye!");
     }
 }
