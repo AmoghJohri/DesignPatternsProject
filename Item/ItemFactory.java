@@ -2,26 +2,44 @@ package Item;
 import Item.MCQ.MCQCreate;
 import Item.MCQ2.MCQ2Create;
 import Item.Comprehension.ComprehensionCreate;
+import java.util.HashMap;
 public class ItemFactory
 {
-    public static Item makeItem(String type)
+    private static HashMap<String, ItemCreate> createType = null;
+
+    private ItemFactory(String s)
     {
-        if(type.equals("MCQ"))
+        if(createType == null)
         {
-            return MCQCreate.makeItem();
+            createType = new HashMap<String, ItemCreate>();
         }
-        else if(type.equals("MCQ2"))
+        if(!createType.containsKey(s))
         {
-            return MCQ2Create.makeItem();
+            if(s == "MCQ")
+            {
+                createType.put(s, new MCQCreate());
+            }
+            else if(s == "MCQ2")
+            {
+                createType.put(s, new MCQ2Create());
+            }
+            else if(s == "Comprehension")
+            {
+                createType.put(s, new ComprehensionCreate());
+            }
         }
-        else if(type.equals("Comprehension"))
+    }
+
+    public static ItemCreate getItemCreator(String type)
+    {
+        if(createType == null)
         {
-            return ComprehensionCreate.makeItem();
+            new ItemFactory(type);
         }
-        else 
+        else if(!createType.containsKey(type))
         {
-            // default
-            return MCQCreate.makeItem();
+            new ItemFactory(type);
         }
+        return createType.get(type);
     }
 }

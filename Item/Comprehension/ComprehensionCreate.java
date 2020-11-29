@@ -1,10 +1,14 @@
 package Item.Comprehension;
 import Item.Item;
+import Item.ItemCreate;
 import Item.ItemFactory;
 import java.util.Scanner;
-public class ComprehensionCreate 
+public class ComprehensionCreate implements ItemCreate
 {
-    public static Item makeItem()
+
+    public ComprehensionCreate(){}
+
+    public Item makeItem()
     {
         Scanner scan = new Scanner(System.in);
         String paragraph = null;
@@ -21,11 +25,11 @@ public class ComprehensionCreate
             Integer input = scan.nextInt();
             if(input == 1)
             {
-                question = new AddMCQ(question, ItemFactory.makeItem("MCQ"));
+                question = new AddMCQ(question, ItemFactory.getItemCreator("MCQ").makeItem());
             }
             else if(input == 2)
             {
-                question = new AddMCQ2(question, ItemFactory.makeItem("MCQ2"));
+                question = new AddMCQ2(question, ItemFactory.getItemCreator("MCQ2").makeItem());
             }
             else if(input == 3)
             {

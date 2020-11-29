@@ -1,10 +1,13 @@
 package Item.MCQ;
 import Item.Item;
+import Item.ItemCreate;
 import java.util.Scanner;
 import java.util.ArrayList;
-public class MCQCreate 
+public class MCQCreate implements ItemCreate
 {
-    public static Item makeItem()
+    public MCQCreate(){}
+
+    public Item makeItem()
     {
         Scanner scan = new Scanner(System.in);
         String question = null;

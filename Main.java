@@ -22,15 +22,15 @@ public class Main
             choice = Integer.parseInt(scan.nextLine());
             if(choice == 1)
             {
-                item = ItemFactory.makeItem("MCQ");
+                item = ItemFactory.getItemCreator("MCQ").makeItem();
             }
             else if(choice == 2)
             {
-                item = ItemFactory.makeItem("MCQ2");
+                item = ItemFactory.getItemCreator("MCQ2").makeItem();
             }
             else if(choice == 3)
             {
-                item = ItemFactory.makeItem("Comprehension");
+                item = ItemFactory.getItemCreator("Comprehension").makeItem();
             }
             else if(choice == 9)
             {
@@ -39,7 +39,7 @@ public class Main
             else
             {   
                 // default
-                item = ItemFactory.makeItem("MCQ");
+                item = ItemFactory.getItemCreator("MCQ").makeItem();
             }
             System.out.println("Press 4 to review Item");
             System.out.println("Press 5 to delete Item");
