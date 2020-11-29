@@ -25,11 +25,11 @@ public class ComprehensionCreate implements ItemCreate
             Integer input = scan.nextInt();
             if(input == 1)
             {
-                question = new AddMCQ(question, ItemFactory.getItemCreator("MCQ").makeItem());
+                question = new AddMCQ(question, ItemFactory.getItem("MCQ"));
             }
             else if(input == 2)
             {
-                question = new AddMCQ2(question, ItemFactory.getItemCreator("MCQ2").makeItem());
+                question = new AddMCQ2(question, ItemFactory.getItem("MCQ2"));
             }
             else if(input == 3)
             {

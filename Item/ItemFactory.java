@@ -30,7 +30,7 @@ public class ItemFactory
         }
     }
 
-    public static ItemCreate getItemCreator(String type)
+    public static Item getItem(String type)
     {
         if(createType == null)
         {
@@ -40,6 +40,6 @@ public class ItemFactory
         {
             new ItemFactory(type);
         }
-        return createType.get(type);
+        return createType.get(type).makeItem();
     }
 }

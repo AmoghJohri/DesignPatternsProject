@@ -1,7 +1,7 @@
-import Item.ItemFactory;
 import Item.Item;
-import java.util.Scanner;
+import Item.ItemFactory;
 import Database.QuestionDatabaseConnectionPool;
+import java.util.Scanner;
 import java.util.ArrayList;
 public class Main
 {
@@ -22,15 +22,15 @@ public class Main
             choice = Integer.parseInt(scan.nextLine());
             if(choice == 1)
             {
-                item = ItemFactory.getItemCreator("MCQ").makeItem();
+                item = ItemFactory.getItem("MCQ");
             }
             else if(choice == 2)
             {
-                item = ItemFactory.getItemCreator("MCQ2").makeItem();
+                item = ItemFactory.getItem("MCQ2");
             }
             else if(choice == 3)
             {
-                item = ItemFactory.getItemCreator("Comprehension").makeItem();
+                item = ItemFactory.getItem("Comprehension");
             }
             else if(choice == 9)
             {
@@ -39,7 +39,7 @@ public class Main
             else
             {   
                 // default
-                item = ItemFactory.getItemCreator("MCQ").makeItem();
+                item = ItemFactory.getItem("MCQ");
             }
             System.out.println("Press 4 to review Item");
             System.out.println("Press 5 to delete Item");
