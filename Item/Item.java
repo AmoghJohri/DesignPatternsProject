@@ -11,22 +11,6 @@ public abstract class Item {
         this.answer = a;
         this.difficulty = d;
     }
-    // setters
-
-    public void setQuestion(Question q)
-    {
-        this.question = q;
-    }
-    
-    public void setAnswer(Answer a)
-    {
-        this.answer = a;
-    }
-
-    public void setDifficulty(Integer d)
-    {
-        this.difficulty = d;
-    }
 
     // getters
 
