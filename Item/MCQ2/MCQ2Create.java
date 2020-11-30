@@ -1,19 +1,23 @@
 package Item.MCQ2;
-import Item.Item;
-import Item.ItemCreate;
-import java.util.Scanner;
-import java.util.ArrayList;
+import  Item.Item;
+import  Item.ItemCreate;
+
+import  java.util.Scanner;
+import  java.util.ArrayList;
+// concrete creator corresponding to ItemCreate (Factory Method)
 public class MCQ2Create implements ItemCreate
 {
     public MCQ2Create(){}
 
+    // overriding the factory-method
     public Item makeItem()
     {
-        Scanner scan = new Scanner(System.in);
-        String question = null;
-        ArrayList<String> options = null;
-        ArrayList<Integer> answers = null;
-        Integer difficulty = null;
+        Scanner scan                = new Scanner(System.in);
+        String question             = null; // storing the question
+        ArrayList<String> options   = null; // storing the list of options
+        ArrayList<Integer> answers  = null; // storing the indices of correct options
+        Integer difficulty          = null; // storing the difficulty
+        // interactive interface - as authoring is an interactive process
         while(true)
         {
             System.out.println("Press 1 to enter the Question");
@@ -22,12 +26,12 @@ public class MCQ2Create implements ItemCreate
             System.out.println("Press 4 to enter the Difficulty");
             System.out.println("Press 5 to get the Item");
             Integer input = Integer.parseInt(scan.nextLine());
-            if(input == 1)
+            if(input == 1) // getting the question
             {
                 System.out.println("Enter the question:");
                 question = scan.nextLine();
             }
-            else if(input == 2)
+            else if(input == 2) // getting the options
             {
                 System.out.println("Enter the number of Options:");
                 Integer n = Integer.parseInt(scan.nextLine());
@@ -38,7 +42,7 @@ public class MCQ2Create implements ItemCreate
                     options.add(scan.nextLine());
                 }
             }
-            else if(input == 3)
+            else if(input == 3) // getting the answer
             {
                 System.out.println("Enter the number of Answers:");
                 Integer n = Integer.parseInt(scan.nextLine());
@@ -49,12 +53,12 @@ public class MCQ2Create implements ItemCreate
                     answers.add(Integer.parseInt(scan.nextLine())); 
                 }
             }
-            else if(input == 4)
+            else if(input == 4) // getting the difficulty
             {
                 System.out.println("Enter the Difficulty:");
                 difficulty = Integer.parseInt(scan.nextLine());
             }
-            else if(input == 5)
+            else if(input == 5) // returning an item of corresponding concrete type
             {
                 return new MCQ2Item(new MCQ2Question(question, options), new MCQ2Answer(answers), difficulty);
             }

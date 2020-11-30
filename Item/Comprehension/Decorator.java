@@ -1,9 +1,9 @@
 package Item.Comprehension;
-
+// decorator corresponding to the component (which is comprehension)
 public abstract class Decorator implements Comprehension 
 {
-    protected Comprehension tempComprehension;
-    protected Integer numberOfQuestions;
+    protected Comprehension tempComprehension; // storing the component (decorator has-a component)
+    protected Integer       numberOfQuestions; // storing the number of times an a component is decorated
 
     public Decorator(Comprehension comprehension)
     {
@@ -12,6 +12,7 @@ public abstract class Decorator implements Comprehension
         this.numberOfQuestions ++;
     }
 
+    // getters
     public String getQuestionDescription()
     {
         return this.tempComprehension.getQuestionDescription();
